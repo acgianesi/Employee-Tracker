@@ -43,3 +43,7 @@ function viewDepartments() {
     displayMainMenu(); 
 }
 
+function viewRoles() {
+    console.log("Viewing all roles...");
+    displayMainMenu();
+}
