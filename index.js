@@ -122,3 +122,5 @@ function updateEmployeeRole() {
     console.log("Updating employee role...");
     displayMainMenu();
 }
+
+displayMainMenu();
