@@ -37,3 +37,9 @@ function displayMainMenu() {
         }
     });
 }
+
+function viewDepartments() {
+    console.log("Viewing all departments...");
+    displayMainMenu(); 
+}
+
