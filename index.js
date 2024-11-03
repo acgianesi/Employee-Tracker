@@ -47,3 +47,9 @@ function viewRoles() {
     console.log("Viewing all roles...");
     displayMainMenu();
 }
+
+function viewEmployees() {
+    console.log("Viewing all employees...");
+    displayMainMenu();
+}
+
