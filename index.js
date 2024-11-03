@@ -64,3 +64,27 @@ function addDepartment() {
         displayMainMenu();
     });
 }
+
+function addRole() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'roleTitle',
+            message: 'Enter the title of the role:'
+        },
+        {
+            type: 'input',
+            name: 'roleSalary',
+            message: 'Enter the salary for the role:'
+        },
+        {
+            type: 'input',
+            name: 'departmentId',
+            message: 'Enter the department ID for this role:'
+        }
+    ])
+    .then(answer => {
+        console.log(`Adding role: ${answer.roleTitle}`);
+        displayMainMenu();
+    });
+}
