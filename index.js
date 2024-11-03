@@ -53,3 +53,14 @@ function viewEmployees() {
     displayMainMenu();
 }
 
+function addDepartment() {
+    inquirer.prompt({
+        type: 'input',
+        name: 'departmentName',
+        message: 'Enter the name of the department:'
+    })
+    .then(answer => {
+        console.log(`Adding department: ${answer.departmentName}`);
+        displayMainMenu();
+    });
+}
