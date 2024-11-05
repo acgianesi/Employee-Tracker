@@ -87,15 +87,15 @@ function addDepartment() {
         .then(answer => {
             console.log(`Adding department: ${answer.departmentName}`);
             db.query('INSERT INTO department (name) VALUES ($1)', [answer.departmentName])
-            .then(() => {
-                console.log(`Department ${answer.departmentName} added!`);
-                displayMainMenu();
-            })
-            .catch(err => {
-                console.error(err);
-                displayMainMenu();
-            });
-    });
+                .then(() => {
+                    console.log(`Department ${answer.departmentName} added!`);
+                    displayMainMenu();
+                })
+                .catch(err => {
+                    console.error(err);
+                    displayMainMenu();
+                });
+        });
 }
 
 function addRole() {
@@ -118,7 +118,16 @@ function addRole() {
     ])
         .then(answer => {
             console.log(`Adding role: ${answer.roleTitle}`);
-            displayMainMenu();
+            db.query('INSERT INTO role (title, salary, department_id) VALUES ($1, $2, $3)',
+                [answer.roleTitle, answer.roleSalary, answer.departmentId])
+                .then(() => {
+                    console.log(`Role ${answer.roleTitle} added!`);
+                    displayMainMenu();
+                })
+                .catch(err => {
+                    console.error(err);
+                    displayMainMenu();
+                });
         });
 }
 
