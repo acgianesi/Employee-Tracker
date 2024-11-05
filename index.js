@@ -170,8 +170,40 @@ function addEmployee() {
 }
 
 function updateEmployeeRole() {
-    console.log("Updating employee role...");
-    displayMainMenu();
+    db.query('SELECT * FROM employee')
+        .then(result => {
+            const employees = result.rows;
+            inquirer.prompt([
+                {
+                    type: 'list',
+                    name: 'employee',
+                    message: 'Select an employee to update their role:',
+                    choices: employees.map(emp => `${emp.first_name} ${emp.last_name} (ID: ${emp.id})`)
+                },
+                {
+                    type: 'input',
+                    name: 'newRoleId',
+                    message: 'Enter the new role ID for this employee:'
+                }
+            ])
+            .then(answer => {
+                const employeeId = employees.find(emp => `${emp.first_name} ${emp.last_name} (ID: ${emp.id})` === answer.employee).id;
+                const newRoleId = answer.newRoleId;
+                db.query('UPDATE employee SET role_id = $1 WHERE id = $2', [newRoleId, employeeId])
+                    .then(() => {
+                        console.log(`Employee's role updated successfully!`);
+                        displayMainMenu();
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        displayMainMenu();
+                    });
+            });
+        })
+        .catch(err => {
+            console.error(err);
+            displayMainMenu();
+        });
 }
 
 displayMainMenu();
