@@ -156,7 +156,16 @@ function addEmployee() {
     ])
         .then(answer => {
             console.log(`Adding employee: ${answer.firstName} ${answer.lastName}`);
-            displayMainMenu();
+            db.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ($1, $2, $3, $4)',
+                [answer.firstName, answer.lastName, answer.roleId, answer.managerId || null])
+                .then(() => {
+                    console.log(`Employee ${answer.firstName} ${answer.lastName} added!`);
+                    displayMainMenu();
+                })
+                .catch(err => {
+                    console.error(err);
+                    displayMainMenu();
+                });
         });
 }
 
