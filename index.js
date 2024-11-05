@@ -53,8 +53,17 @@ function viewDepartments() {
 
 function viewRoles() {
     console.log("Viewing all roles...");
-    displayMainMenu();
+    db.query('SELECT * FROM role')
+    .then(result => {
+        console.table(result.rows);
+        displayMainMenu();
+    })
+    .catch(err => {
+        console.error(err);
+        displayMainMenu();
+    });
 }
+
 
 function viewEmployees() {
     console.log("Viewing all employees...");
