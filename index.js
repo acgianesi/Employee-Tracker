@@ -40,7 +40,15 @@ function displayMainMenu() {
 
 function viewDepartments() {
     console.log("Viewing all departments...");
-    displayMainMenu();
+    db.query('SELECT * FROM department')
+    .then(result => {
+        console.table(result.rows);
+        displayMainMenu();
+    })
+    .catch(err => {
+        console.error(err);
+        displayMainMenu();
+    });
 }
 
 function viewRoles() {
