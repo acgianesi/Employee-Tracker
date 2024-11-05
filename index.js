@@ -41,33 +41,41 @@ function displayMainMenu() {
 function viewDepartments() {
     console.log("Viewing all departments...");
     db.query('SELECT * FROM department')
-    .then(result => {
-        console.table(result.rows);
-        displayMainMenu();
-    })
-    .catch(err => {
-        console.error(err);
-        displayMainMenu();
-    });
+        .then(result => {
+            console.table(result.rows);
+            displayMainMenu();
+        })
+        .catch(err => {
+            console.error(err);
+            displayMainMenu();
+        });
 }
 
 function viewRoles() {
     console.log("Viewing all roles...");
     db.query('SELECT * FROM role')
-    .then(result => {
-        console.table(result.rows);
-        displayMainMenu();
-    })
-    .catch(err => {
-        console.error(err);
-        displayMainMenu();
-    });
+        .then(result => {
+            console.table(result.rows);
+            displayMainMenu();
+        })
+        .catch(err => {
+            console.error(err);
+            displayMainMenu();
+        });
 }
 
 
 function viewEmployees() {
     console.log("Viewing all employees...");
-    displayMainMenu();
+    db.query('SELECT * FROM employee')
+        .then(result => {
+            console.table(result.rows);
+            displayMainMenu();
+        })
+        .catch(err => {
+            console.error(err);
+            displayMainMenu();
+        });
 }
 
 function addDepartment() {
@@ -129,10 +137,10 @@ function addEmployee() {
             message: 'Enter the manager ID for this employee (leave blank if none):'
         }
     ])
-    .then(answer => {
-        console.log(`Adding employee: ${answer.firstName} ${answer.lastName}`);
-        displayMainMenu();
-    });
+        .then(answer => {
+            console.log(`Adding employee: ${answer.firstName} ${answer.lastName}`);
+            displayMainMenu();
+        });
 }
 
 function updateEmployeeRole() {
