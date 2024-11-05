@@ -3,7 +3,6 @@ const pool = new Pool({
     user: 'andrecompanygianesi',
     host: 'localhost',
     database: 'employee_tracker',
-    password: 'password123',
     port: 5432,
 });
 
