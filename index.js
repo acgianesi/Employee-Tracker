@@ -86,8 +86,16 @@ function addDepartment() {
     })
         .then(answer => {
             console.log(`Adding department: ${answer.departmentName}`);
-            displayMainMenu();
-        });
+            db.query('INSERT INTO department (name) VALUES ($1)', [answer.departmentName])
+            .then(() => {
+                console.log(`Department ${answer.departmentName} added!`);
+                displayMainMenu();
+            })
+            .catch(err => {
+                console.error(err);
+                displayMainMenu();
+            });
+    });
 }
 
 function addRole() {
